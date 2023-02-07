@@ -12,7 +12,7 @@ IntList::IntList(const IntList &source)
 {
     Node *n = this->first;
     Node *og = source.first;
-    while (og)
+    while (og != nullptr)
     {
         n->info = og->info;
         n = n->next;
@@ -121,8 +121,7 @@ IntList &IntList::operator=(const IntList &source)
     }
 
     Node *copyFrom = source.first;
-    Node *n = new Node;
-    n = this->first;
+    Node *n = this->first;
 
     while (copyFrom != nullptr)
     {
