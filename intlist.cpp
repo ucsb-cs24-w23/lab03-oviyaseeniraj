@@ -10,14 +10,16 @@ using std::cout;
 // copy constructor
 IntList::IntList(const IntList &source)
 {
-    Node *n = this->first;
-    Node *og = source.first;
-    while (og != nullptr)
-    {
-        n->info = og->info;
-        n = n->next;
-        og = og->next;
-    }
+    // Node *n = this->first;
+    // Node *og = source.first;
+    // while (og != nullptr)
+    // {
+    //     n->info = og->info;
+    //     n = n->next;
+    //     og = og->next;
+    // }
+
+    this->first = source.first;
 }
 
 // destructor deletes all nodes
@@ -120,15 +122,17 @@ IntList &IntList::operator=(const IntList &source)
         delete n;
     }
 
-    Node *copyFrom = source.first;
-    Node *n = this->first;
+    // Node *copyFrom = source.first;
+    // Node *n = this->first;
 
-    while (copyFrom != nullptr)
-    {
-        n->info = copyFrom->info;
-        n = n->next;
-        copyFrom = copyFrom->next;
-    }
+    // while (copyFrom->next != nullptr)
+    // {
+    //     n->info = copyFrom->info;
+    //     n = n->next;
+    //     copyFrom = copyFrom->next;
+    // }
+
+    this->first = source.first;
     return *this;
 }
 
