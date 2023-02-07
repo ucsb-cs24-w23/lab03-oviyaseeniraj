@@ -11,12 +11,20 @@ using std::cout;
 IntList::IntList(const IntList &source)
 {
     this->first = source.first;
+    Node *n = this->first;
+    Node *og = source.first;
+    while (og != nullptr)
+    {
+        n = og;
+        n = n->next;
+        og = og->next;
+    }
 }
 
 // destructor deletes all nodes
 IntList::~IntList()
 {
-    while (this->first->next != nullptr)
+    while (this->first != nullptr)
     {
         Node *n = this->first;
         this->first = this->first->next;
@@ -106,16 +114,22 @@ void IntList::insertFirst(int value)
 // to this list, deleting/replacing any existing nodes
 IntList &IntList::operator=(const IntList &source)
 {
-    Node *copyFrom = source.first;
-    while (this->first->next != nullptr)
+    while (this->first != nullptr)
     {
         Node *n = this->first;
         this->first = this->first->next;
         delete n;
     }
+
+    Node *copyFrom = source.first;
+    Node *n = new Node;
+    n = this->first;
+
     while (copyFrom != nullptr)
     {
-        this->append(copyFrom->info);
+        n->info = copyFrom->info;
+        n = n->next;
+        copyFrom = copyFrom->next;
     }
     return *this;
 }
