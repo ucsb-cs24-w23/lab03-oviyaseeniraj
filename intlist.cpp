@@ -10,12 +10,11 @@ using std::cout;
 // copy constructor
 IntList::IntList(const IntList &source)
 {
-    this->first = source.first;
     Node *n = this->first;
     Node *og = source.first;
-    while (og != nullptr)
+    while (og)
     {
-        n = og;
+        n->info = og->info;
         n = n->next;
         og = og->next;
     }
