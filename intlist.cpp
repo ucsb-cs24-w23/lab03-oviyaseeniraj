@@ -20,6 +20,17 @@ IntList::IntList(const IntList &source)
     // }
 
     this->first = source.first;
+
+    Node *n = this->first;
+    Node *og = source.first;
+    while (og->next != nullptr)
+    {
+        n->next = og->next;
+        Node *temp = og;
+        og = og->next;
+        delete temp;
+        n = n->next;
+    }
 }
 
 // destructor deletes all nodes
