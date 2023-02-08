@@ -10,18 +10,28 @@ using std::cout;
 // copy constructor
 IntList::IntList(const IntList &source)
 {
-    this->first = nullptr;
     Node *copyFrom = source.first;
-    Node *curr = this->first;
-    curr->info = copyFrom->info;
-    curr->next = nullptr;
+    this->first = nullptr;
+    Node *trace = nullptr;
+    int count = 0;
     while (copyFrom != nullptr)
     {
-        Node *newNode = new Node;
-        newNode->info = copyFrom->info;
-        newNode->next = nullptr;
-        curr->next = newNode;
-        copyFrom = copyFrom->next;
+        if (count == 0)
+        {
+            trace = new Node;
+            trace->info = copyFrom->info;
+            trace->next = nullptr;
+            this->first = trace;
+            copyFrom = copyFrom->next;
+            count++;
+        }
+        else
+        {
+            trace->next = new Node;
+            trace = trace->next;
+            trace->info = copyFrom->info;
+            copyFrom = copyFrom->next;
+        }
     }
 }
 
@@ -125,17 +135,30 @@ IntList &IntList::operator=(const IntList &source)
         delete n;
     }
 
-    // Node *copyFrom = source.first;
-    // Node *n = this->first;
+    Node *copyFrom = source.first;
+    this->first = nullptr;
+    Node *trace = nullptr;
+    int count = 0;
+    while (copyFrom != nullptr)
+    {
+        if (count == 0)
+        {
+            trace = new Node;
+            trace->info = copyFrom->info;
+            trace->next = nullptr;
+            this->first = trace;
+            copyFrom = copyFrom->next;
+            count++;
+        }
+        else
+        {
+            trace->next = new Node;
+            trace = trace->next;
+            trace->info = copyFrom->info;
+            copyFrom = copyFrom->next;
+        }
+    }
 
-    // while (copyFrom->next != nullptr)
-    // {
-    //     n->info = copyFrom->info;
-    //     n = n->next;
-    //     copyFrom = copyFrom->next;
-    // }
-
-    this->first = source.first;
     return *this;
 }
 
