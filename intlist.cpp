@@ -13,10 +13,8 @@ IntList::IntList(const IntList &source)
     this->first = nullptr;
     Node *copyFrom = source.first;
     Node *curr = this->first;
-    Node *newNode = new Node;
-    newNode->info = copyFrom->info;
-    newNode->next = nullptr;
-    curr = newNode;
+    curr->info = copyFrom->info;
+    curr->next = nullptr;
     while (copyFrom != nullptr)
     {
         Node *newNode = new Node;
