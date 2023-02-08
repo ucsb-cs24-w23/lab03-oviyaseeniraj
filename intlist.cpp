@@ -10,18 +10,20 @@ using std::cout;
 // copy constructor
 IntList::IntList(const IntList &source)
 {
-    if (source.first == nullptr)
-    {
-        this->first = NULL;
-    }
-
+    this->first = nullptr;
     Node *copyFrom = source.first;
     Node *curr = this->first;
-    while (copyFrom != NULL)
+    Node *newNode = new Node;
+    newNode->info = copyFrom->info;
+    newNode->next = nullptr;
+    curr = newNode;
+    while (copyFrom != nullptr)
     {
-        curr = copyFrom;
+        Node *newNode = new Node;
+        newNode->info = copyFrom->info;
+        newNode->next = nullptr;
+        curr->next = newNode;
         copyFrom = copyFrom->next;
-        curr = curr->next;
     }
 }
 
